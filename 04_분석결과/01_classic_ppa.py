@@ -24,6 +24,8 @@ import os
 BASE = os.path.dirname(os.path.abspath(__file__))
 NET_PATH = os.path.join(BASE, "../01_네트워크/seongdong_walk_network.graphml")
 OUT_DIR = BASE
+FIG_DIR = os.path.join(BASE, "figures")
+os.makedirs(FIG_DIR, exist_ok=True)
 
 # ── 파라미터 ───────────────────────────────────────
 WALK_SPEED_MPS = 4.5 * 1000 / 3600   # 4.5 km/h → m/s = 1.25 m/s
@@ -144,7 +146,7 @@ plt.suptitle(
 )
 plt.tight_layout()
 
-out_path = os.path.join(OUT_DIR, "classic_ppa_eungbong.png")
+out_path = os.path.join(FIG_DIR, "classic_ppa_eungbong.png")
 plt.savefig(out_path, dpi=150, bbox_inches="tight")
 plt.close()
 print(f"\n저장 완료: {out_path}")

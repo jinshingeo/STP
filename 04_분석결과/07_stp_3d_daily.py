@@ -312,7 +312,7 @@ plt.suptitle(
 )
 
 plt.tight_layout()
-out = os.path.join(OUT_DIR, "stp_3d_daily.png")
+out = os.path.join(FIG_DIR, "stp_3d_daily.png")
 plt.savefig(out, dpi=150, bbox_inches="tight")
 plt.close()
 print(f"\n저장: {out}")

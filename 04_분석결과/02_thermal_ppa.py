@@ -27,6 +27,8 @@ import json, os
 BASE = os.path.dirname(os.path.abspath(__file__))
 NET_PATH = os.path.join(BASE, "../01_네트워크/seongdong_walk_network.graphml")
 OUT_DIR = BASE
+FIG_DIR = os.path.join(BASE, "figures")
+os.makedirs(FIG_DIR, exist_ok=True)
 
 # ── 파라미터 ────────────────────────────────────────────────────────
 WALK_SPEED_BASE = 4.5 * 1000 / 3600   # 기본 보행속도 m/s
@@ -199,7 +201,7 @@ plt.suptitle(
 )
 plt.tight_layout()
 
-out_path = os.path.join(OUT_DIR, "thermal_ppa_scenarios.png")
+out_path = os.path.join(FIG_DIR, "thermal_ppa_scenarios.png")
 plt.savefig(out_path, dpi=150, bbox_inches="tight")
 plt.close()
 print(f"저장 완료: {out_path}")

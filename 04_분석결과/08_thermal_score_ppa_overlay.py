@@ -246,7 +246,7 @@ plt.suptitle(
     fontsize=13, fontweight="bold", y=1.01
 )
 plt.tight_layout(rect=[0, 0.06, 1, 1])
-out = os.path.join(OUT_DIR, "thermal_score_ppa_overlay.png")
+out = os.path.join(FIG_DIR, "thermal_score_ppa_overlay.png")
 plt.savefig(out, dpi=150, bbox_inches="tight")
 plt.close()
 print(f"저장: {out}")

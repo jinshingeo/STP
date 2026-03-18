@@ -201,7 +201,7 @@ plt.suptitle(
     fontsize=14, fontweight="bold", y=1.02
 )
 plt.tight_layout()
-out = os.path.join(OUT_DIR, "isochrone_stp_comparison.png")
+out = os.path.join(FIG_DIR, "isochrone_stp_comparison.png")
 plt.savefig(out, dpi=150, bbox_inches="tight")
 plt.close()
 print(f"저장: {out}")

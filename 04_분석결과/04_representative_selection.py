@@ -238,7 +238,7 @@ plt.suptitle(
     fontsize=14, fontweight="bold", y=1.01
 )
 plt.tight_layout()
-out = os.path.join(OUT_DIR, "4panel_ppa_comparison.png")
+out = os.path.join(FIG_DIR, "4panel_ppa_comparison.png")
 plt.savefig(out, dpi=150, bbox_inches="tight")
 plt.close()
 print(f"저장: {out}")

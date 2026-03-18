@@ -23,6 +23,8 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 NET_PATH = os.path.join(BASE, "../01_네트워크/seongdong_walk_network.graphml")
 JIBGU_PATH = "/Users/jin/석사논문/통계지역경계/집계구.shp"
 OUT_DIR = BASE
+FIG_DIR = os.path.join(BASE, "figures")
+os.makedirs(FIG_DIR, exist_ok=True)
 
 # ── 파라미터 ────────────────────────────────────────────────────────
 WALK_SPEED_BASE = 4.5 * 1000 / 3600   # m/s
@@ -225,7 +227,7 @@ plt.suptitle(
     fontsize=13, fontweight="bold"
 )
 plt.tight_layout()
-out1 = os.path.join(OUT_DIR, "multi_origin_eungbong_accessibility.png")
+out1 = os.path.join(FIG_DIR, "multi_origin_eungbong_accessibility.png")
 plt.savefig(out1, dpi=150, bbox_inches="tight")
 plt.close()
 print(f"저장: {out1}")
@@ -281,7 +283,7 @@ plt.suptitle(
     fontsize=13, fontweight="bold"
 )
 plt.tight_layout()
-out2 = os.path.join(OUT_DIR, "multi_origin_district_comparison.png")
+out2 = os.path.join(FIG_DIR, "multi_origin_district_comparison.png")
 plt.savefig(out2, dpi=150, bbox_inches="tight")
 plt.close()
 print(f"저장: {out2}")
