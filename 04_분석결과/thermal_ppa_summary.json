@@ -1,0 +1,19 @@
+{
+  "classic_ppa_nodes": 2529,
+  "classic_ppa_pct": 45.7,
+  "A_쾌적_07시": {
+    "reachable_nodes": 2529,
+    "reachable_pct": 45.7,
+    "decline_from_classic_pct": 0.0
+  },
+  "B_보통더위_10시": {
+    "reachable_nodes": 1104,
+    "reachable_pct": 20.0,
+    "decline_from_classic_pct": 56.3
+  },
+  "C_폭염피크_13시": {
+    "reachable_nodes": 497,
+    "reachable_pct": 9.0,
+    "decline_from_classic_pct": 80.3
+  }
+}

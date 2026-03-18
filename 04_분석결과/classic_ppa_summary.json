@@ -1,0 +1,10 @@
+{
+  "origin": "응봉역",
+  "time_budget_min": 30,
+  "walk_speed_kmh": 4.5,
+  "total_nodes": 5528,
+  "reachable_nodes": 2529,
+  "reachable_pct": 45.7,
+  "total_edges": 15608,
+  "reachable_edges": 3577
+}

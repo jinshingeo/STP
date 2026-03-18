@@ -1,0 +1,38 @@
+{
+  "A_쾌적_07시": {
+    "응봉동": {
+      "origin_nodes": 33,
+      "gym_accessible": 24,
+      "gym_accessible_pct": 72.7
+    },
+    "성수동": {
+      "origin_nodes": 116,
+      "gym_accessible": 117,
+      "gym_accessible_pct": 95.9
+    }
+  },
+  "B_보통더위_10시": {
+    "응봉동": {
+      "origin_nodes": 33,
+      "gym_accessible": 2,
+      "gym_accessible_pct": 6.1
+    },
+    "성수동": {
+      "origin_nodes": 116,
+      "gym_accessible": 116,
+      "gym_accessible_pct": 95.1
+    }
+  },
+  "C_폭염피크_13시": {
+    "응봉동": {
+      "origin_nodes": 33,
+      "gym_accessible": 0,
+      "gym_accessible_pct": 0.0
+    },
+    "성수동": {
+      "origin_nodes": 116,
+      "gym_accessible": 94,
+      "gym_accessible_pct": 77.0
+    }
+  }
+}

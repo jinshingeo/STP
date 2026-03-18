@@ -1,0 +1,35 @@
+# 대용량 데이터 파일 (재생성 가능)
+*.graphml
+*.gpkg
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.sbn
+*.sbx
+
+# 원시 기상 데이터
+02_기상데이터/raw/
+
+# 출력 이미지 (스크립트로 재생성 가능)
+04_분석결과/*.png
+05_시각화/*.png
+
+# Python 캐시
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Jupyter 체크포인트
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# 환경 설정
+.env
+*.env
