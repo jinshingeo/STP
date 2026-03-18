@@ -32,3 +32,4 @@ __pycache__/
 # 환경 설정
 .env
 *.env
+cache/
