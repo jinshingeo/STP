@@ -46,11 +46,12 @@ HOURS        = list(range(7, 22))   # 07~21시
 CMAP   = cm.get_cmap('RdYlGn_r')
 NORM   = mcolors.Normalize(vmin=30, vmax=42)
 
-def utci_to_rgba(utci_val, alpha_face=0.22, alpha_edge=0.80):
+def utci_to_rgba(utci_val, alpha_face=0.42, alpha_edge=0.90):
     r, g, b, _ = CMAP(NORM(utci_val))
     return (r, g, b, alpha_face), (r, g, b, alpha_edge)
 
-CLASSIC_STYLE = {"face": (0.40, 0.60, 0.90, 0.10), "edge": (0.20, 0.40, 0.75, 0.40)}
+# Classic PPA: 면 채움 없이 윤곽선만 → Thermal 슬라이스가 가려지지 않도록
+CLASSIC_STYLE = {"face": (0.40, 0.60, 0.90, 0.0), "edge": (0.20, 0.40, 0.75, 0.55)}
 
 # ── 1. link_utci 로드 → (u, v, hour) → speed_factor ─────────────────
 print("링크 UTCI 로드...")
@@ -174,7 +175,7 @@ for col, (district, origin) in enumerate(origins.items()):
         for i in range(0, len(c_hull), step):
             px, py = c_hull[i]
             ax.plot([px, px], [py, py], [HOURS[0], HOURS[-1]],
-                    color=(0.20, 0.40, 0.75), linewidth=0.4, alpha=0.35, zorder=2)
+                    color=(0.20, 0.40, 0.75), linewidth=0.7, alpha=0.55, zorder=2)
 
     # Thermal PPA 슬라이스 (시간대별 실측 UTCI 색상)
     prev_hull_data = None
@@ -190,13 +191,13 @@ for col, (district, origin) in enumerate(origins.items()):
 
         verts = [(x, y, h) for x, y in hull_verts]
         ax.add_collection3d(Poly3DCollection([verts],
-            facecolor=face_c, edgecolor=edge_c, linewidth=1.0, zorder=4))
+            facecolor=face_c, edgecolor=edge_c, linewidth=1.2, zorder=4))
 
         # 윤곽선
         hx = [v[0] for v in verts] + [verts[0][0]]
         hy = [v[1] for v in verts] + [verts[0][1]]
         ax.plot(hx, hy, [h]*(len(verts)+1), color=edge_c[:3],
-                linewidth=1.2, alpha=edge_c[3], zorder=5)
+                linewidth=1.8, alpha=edge_c[3], zorder=5)
 
         # 이전 슬라이스와 연결선
         if prev_hull_data is not None:
