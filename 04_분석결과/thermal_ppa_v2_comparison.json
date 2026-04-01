@@ -1,0 +1,50 @@
+{
+  "_version": "v2_sdot",
+  "_date": "2026-04-01",
+  "응봉동": {
+    "classic": {
+      "nodes": 3493,
+      "pct": 63.2
+    },
+    "thermal": {
+      "7": {
+        "nodes": 1755,
+        "pct": 31.7,
+        "decline": 49.8
+      },
+      "10": {
+        "nodes": 1629,
+        "pct": 29.5,
+        "decline": 53.4
+      },
+      "13": {
+        "nodes": 644,
+        "pct": 11.6,
+        "decline": 81.6
+      }
+    }
+  },
+  "성수동": {
+    "classic": {
+      "nodes": 1131,
+      "pct": 20.5
+    },
+    "thermal": {
+      "7": {
+        "nodes": 689,
+        "pct": 12.5,
+        "decline": 39.1
+      },
+      "10": {
+        "nodes": 677,
+        "pct": 12.2,
+        "decline": 40.1
+      },
+      "13": {
+        "nodes": 367,
+        "pct": 6.6,
+        "decline": 67.6
+      }
+    }
+  }
+}
