@@ -1,0 +1,26 @@
+{
+  "_version": "v2_sdot",
+  "_date": "2026-04-01",
+  "_data_source": "S-DoT 2025.07.28-08.03, IDW 보간, v=1.5m/s 가정",
+  "_limitations": "MRT=tdb+3.5*UV(1차근사), 풍속가정, SVF미반영",
+  "classic_ppa_nodes": 2529,
+  "classic_ppa_pct": 45.7,
+  "h07_07시": {
+    "hour": 7,
+    "reachable_nodes": 918,
+    "reachable_pct": 16.6,
+    "decline_from_classic_pct": 63.7
+  },
+  "h10_10시": {
+    "hour": 10,
+    "reachable_nodes": 916,
+    "reachable_pct": 16.6,
+    "decline_from_classic_pct": 63.8
+  },
+  "h13_13시": {
+    "hour": 13,
+    "reachable_nodes": 402,
+    "reachable_pct": 7.3,
+    "decline_from_classic_pct": 84.1
+  }
+}
