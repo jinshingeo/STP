@@ -1,0 +1,35 @@
+{
+  "_version": "v3_asos",
+  "_date": "2026-04-01",
+  "_data_source": "S-DoT + ASOS 2025.07.28-08.03, IDW 보간",
+  "_improvements_over_v2": "MRT=일사량 기반(UV→solar), 풍속=ASOS 실측(1.5m/s 가정 제거)",
+  "classic_ppa_nodes": 2529,
+  "classic_ppa_pct": 45.7,
+  "h07_07시": {
+    "hour": 7,
+    "reachable_nodes": 916,
+    "reachable_pct": 16.6,
+    "decline_from_classic_pct": 63.8,
+    "v2_reachable_nodes": 918,
+    "v2_decline_pct": 63.7,
+    "delta_vs_v2_nodes": -2
+  },
+  "h10_10시": {
+    "hour": 10,
+    "reachable_nodes": 814,
+    "reachable_pct": 14.7,
+    "decline_from_classic_pct": 67.8,
+    "v2_reachable_nodes": 916,
+    "v2_decline_pct": 63.8,
+    "delta_vs_v2_nodes": -102
+  },
+  "h13_13시": {
+    "hour": 13,
+    "reachable_nodes": 409,
+    "reachable_pct": 7.4,
+    "decline_from_classic_pct": 83.8,
+    "v2_reachable_nodes": 402,
+    "v2_decline_pct": 84.1,
+    "delta_vs_v2_nodes": 7
+  }
+}
