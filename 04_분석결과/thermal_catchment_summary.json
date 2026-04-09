@@ -1,0 +1,57 @@
+{
+  "alpha": 0.15,
+  "time_budget_min": 30,
+  "walk_speed_kmh": 4.5,
+  "응봉역": {
+    "h07": {
+      "classic_nodes": 2529,
+      "thermal_nodes": 1155,
+      "lost_nodes": 1374,
+      "reduction_pct": 54.3
+    },
+    "h10": {
+      "classic_nodes": 2529,
+      "thermal_nodes": 1113,
+      "lost_nodes": 1416,
+      "reduction_pct": 56.0
+    },
+    "h13": {
+      "classic_nodes": 2529,
+      "thermal_nodes": 916,
+      "lost_nodes": 1613,
+      "reduction_pct": 63.8
+    },
+    "h16": {
+      "classic_nodes": 2529,
+      "thermal_nodes": 919,
+      "lost_nodes": 1610,
+      "reduction_pct": 63.7
+    }
+  },
+  "성수역": {
+    "h07": {
+      "classic_nodes": 1594,
+      "thermal_nodes": 1155,
+      "lost_nodes": 439,
+      "reduction_pct": 27.5
+    },
+    "h10": {
+      "classic_nodes": 1594,
+      "thermal_nodes": 1155,
+      "lost_nodes": 439,
+      "reduction_pct": 27.5
+    },
+    "h13": {
+      "classic_nodes": 1594,
+      "thermal_nodes": 985,
+      "lost_nodes": 609,
+      "reduction_pct": 38.2
+    },
+    "h16": {
+      "classic_nodes": 1594,
+      "thermal_nodes": 986,
+      "lost_nodes": 608,
+      "reduction_pct": 38.1
+    }
+  }
+}
