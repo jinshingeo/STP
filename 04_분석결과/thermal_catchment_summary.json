@@ -4,27 +4,27 @@
   "walk_speed_kmh": 4.5,
   "응봉역": {
     "h07": {
-      "classic_nodes": 2529,
-      "thermal_nodes": 1155,
-      "lost_nodes": 1374,
-      "reduction_pct": 54.3
+      "classic_nodes": 2545,
+      "thermal_nodes": 1159,
+      "lost_nodes": 1386,
+      "reduction_pct": 54.5
     },
     "h10": {
-      "classic_nodes": 2529,
-      "thermal_nodes": 1113,
-      "lost_nodes": 1416,
+      "classic_nodes": 2545,
+      "thermal_nodes": 1121,
+      "lost_nodes": 1424,
       "reduction_pct": 56.0
     },
     "h13": {
-      "classic_nodes": 2529,
-      "thermal_nodes": 916,
-      "lost_nodes": 1613,
-      "reduction_pct": 63.8
+      "classic_nodes": 2545,
+      "thermal_nodes": 920,
+      "lost_nodes": 1625,
+      "reduction_pct": 63.9
     },
     "h16": {
-      "classic_nodes": 2529,
-      "thermal_nodes": 919,
-      "lost_nodes": 1610,
+      "classic_nodes": 2545,
+      "thermal_nodes": 925,
+      "lost_nodes": 1620,
       "reduction_pct": 63.7
     }
   },

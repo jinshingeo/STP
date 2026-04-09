@@ -30,6 +30,7 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import matplotlib
+import contextily as ctx
 matplotlib.rcParams['font.family'] = 'AppleGothic'
 matplotlib.rcParams['axes.unicode_minus'] = False
 
@@ -49,7 +50,7 @@ ALPHA        = 0.15                # 열 패널티 가중치 (민감도 분석 �
 TARGET_HOURS = [7, 10, 13, 16]
 
 STATIONS = {
-    '응봉역': {'lat': 37.5428, 'lon': 127.0357, 'color': '#E53935'},
+    '응봉역': {'lat': 37.5435, 'lon': 127.0361, 'color': '#E53935'},  # 정밀 좌표
     '성수역': {'lat': 37.5447, 'lon': 127.0561, 'color': '#1E88E5'},
 }
 
@@ -105,63 +106,44 @@ def compute_catchment(G: nx.Graph, station_node: int, utci_lookup: dict,
     }
 
 
-def plot_catchment_map(ax, nodes_gdf, edges_gdf, result, station_node,
-                       station_name, hour, alpha):
-    """Catchment 지도 그리기"""
+def plot_catchment_map(ax, nodes_wm, edges_wm, result, station_node,
+                       station_name, hour, alpha, add_basemap=True):
+    """Catchment 지도 그리기 (Web Mercator + 베이스맵)"""
     classic = result['classic_nodes']
     thermal = result['thermal_nodes']
-    lost    = result['lost_nodes']
 
-    # 노드 분류
-    def classify(n):
-        if n == station_node:  return 'station'
-        if n in thermal:       return 'thermal'   # 여전히 접근 가능
-        if n in classic:       return 'lost'      # 폭염으로 상실
-        return 'outside'
-
-    nodes_gdf = nodes_gdf.copy()
-    nodes_gdf['type'] = nodes_gdf.index.map(classify)
-
-    color_map = {
-        'thermal':  '#43A047',   # 초록: 폭염에도 접근 가능
-        'lost':     '#E53935',   # 빨강: 접근성 상실
-        'station':  '#FFD600',   # 노랑: 역
-        'outside':  '#eeeeee',   # 회색: catchment 외부
-    }
-
-    # 엣지 색상
-    def edge_color(idx):
+    # 엣지 분류 및 색상
+    def etype(idx):
         u, v = idx[0], idx[1]
-        if u in thermal and v in thermal:   return 'thermal'
-        if u in classic  and v in classic:  return 'lost'
+        if u in thermal and v in thermal: return 'thermal'
+        if u in classic  and v in classic: return 'lost'
         return 'outside'
 
-    edges_gdf = edges_gdf.copy()
-    edges_gdf['etype'] = edges_gdf.index.map(edge_color)
+    e = edges_wm.copy()
+    e['etype'] = e.index.map(etype)
 
-    edges_gdf[edges_gdf['etype'] == 'outside'].plot(
-        ax=ax, color='#eeeeee', linewidth=0.3, alpha=0.6)
-    edges_gdf[edges_gdf['etype'] == 'lost'].plot(
-        ax=ax, color='#FFCDD2', linewidth=0.7, alpha=0.8)
-    edges_gdf[edges_gdf['etype'] == 'thermal'].plot(
-        ax=ax, color='#43A047', linewidth=0.9, alpha=0.85)
+    e[e['etype'] == 'outside'].plot(
+        ax=ax, color='#bbbbbb', linewidth=0.3, alpha=0.4, zorder=1)
+    e[e['etype'] == 'lost'].plot(
+        ax=ax, color='#EF9A9A', linewidth=1.0, alpha=0.85, zorder=2)
+    e[e['etype'] == 'thermal'].plot(
+        ax=ax, color='#2E7D32', linewidth=1.2, alpha=0.9, zorder=3)
 
-    # 노드 오버레이
-    for ntype, color in [('lost', '#E53935'), ('thermal', '#43A047')]:
-        subset = nodes_gdf[nodes_gdf['type'] == ntype]
-        if len(subset):
-            subset.plot(ax=ax, color=color, markersize=3, alpha=0.7)
+    # 역 마커
+    sg = nodes_wm.loc[station_node].geometry
+    ax.plot(sg.x, sg.y, '*', color='#FFD600', markersize=16, zorder=8,
+            markeredgecolor='black', markeredgewidth=0.6)
 
-    # 역 표시
-    station_geom = nodes_gdf.loc[station_node].geometry
-    ax.plot(station_geom.x, station_geom.y, '*', color='#FFD600',
-            markersize=14, zorder=6, markeredgecolor='black', markeredgewidth=0.5)
+    # 베이스맵
+    if add_basemap:
+        ctx.add_basemap(ax, source=ctx.providers.OpenStreetMap.Mapnik,
+                        zoom=14, alpha=0.5)
 
     ax.set_title(
         f"{station_name} | {hour:02d}시\n"
-        f"접근 가능: {result['thermal_count']:,}노드 (초록)\n"
-        f"접근성 상실: {result['lost_count']:,}노드 ({result['reduction_pct']}%, 빨강)",
-        fontsize=8.5
+        f"접근 가능(초록): {result['thermal_count']:,}  "
+        f"상실(빨강): {result['lost_count']:,} ({result['reduction_pct']}%)",
+        fontsize=9
     )
     ax.set_axis_off()
 
@@ -171,6 +153,10 @@ print("네트워크 로드 중...")
 G_base = ox.load_graphml(NET_PATH)
 G_base = G_base.to_undirected()
 nodes_gdf, edges_gdf = ox.graph_to_gdfs(G_base)
+
+# Web Mercator 변환 (contextily 베이스맵용)
+nodes_wm = nodes_gdf.to_crs(epsg=3857)
+edges_wm = edges_gdf.to_crs(epsg=3857)
 
 print("UTCI 데이터 로드 중...")
 link_df = pd.read_csv(UTCI_PATH, encoding='utf-8-sig')
@@ -206,7 +192,7 @@ for station_name, sinfo in STATIONS.items():
     for ax, hour in zip(axes, TARGET_HOURS):
         G = G_base.copy()
         result = all_results[station_name][hour]
-        plot_catchment_map(ax, nodes_gdf, edges_gdf, result,
+        plot_catchment_map(ax, nodes_wm, edges_wm, result,
                            sinfo['node'], station_name, hour, ALPHA)
 
     # 범례
